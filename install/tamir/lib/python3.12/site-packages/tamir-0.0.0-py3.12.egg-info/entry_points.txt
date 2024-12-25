@@ -1,0 +1,3 @@
+[console_scripts]
+bluetooth_node = tamir.bluetooth:main
+playmusic_node = tamir.bluetooth:main
