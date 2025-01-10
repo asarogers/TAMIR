@@ -12,7 +12,13 @@ setup(
         ('share/' + package_name, [
             'package.xml',
             'launch/startup.launch.py',
-            ]),
+            'launch/playmusic.launch.py',
+            'sound/535_Silent.mp3',
+            'sound/anti_dog.mp3',
+            'sound/experiment.mp3',
+            'sound/high_pitch.mp3',
+
+        ]),
 
     ],
     install_requires=['setuptools'],
@@ -24,8 +30,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'bluetooth_node = tamir.bluetooth:main',
-            'playmusic_node = tamir.bluetooth:main'
+            'tamir_interface = tamir.tamir_interface:main',
+            'music_node = tamir.playmusic:main'
         ],
     },
 )

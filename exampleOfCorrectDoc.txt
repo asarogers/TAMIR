@@ -1,0 +1,274 @@
+"""
+Pick Node for Franka Arm.
+
+This module defines the `PickNode` class, which serves a wrapper for moveit API
+The node interacts with other components to run methods that will control the arm.
+
+Class:
+------
+PickNode:
+    A ROS 2 node that initializes essential parameters for pick operations.
+
+Functions:
+----------
+main(args=None):
+    Initializes the ROS 2 node and runs `PickNode`.
+
+Authors:
+    Asa Rogers, Grayson Snyder, Sharwin Patil, Tony Shilati
+    Date: 2024-11-09
+"""
+# Copyright 2024 Asa, Grayson, Tony, Sharwin
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+import rclpy
+from rclpy.node import Node
+from moveitapi.mpi import MotionPlanningInterface
+import numpy as np
+from geometry_msgs.msg import Pose  # Assuming Pose is from geometry_msgs
+from std_srvs.srv import Empty
+from rclpy.callback_groups import MutuallyExclusiveCallbackGroup
+import math
+
+
+def quaternion_from_euler(ai, aj, ak):
+    """
+    Convert xyz or ijk angles in radians to their quaternion equivalents.
+
+    :param ai: Angle about the i or x axis in radians.
+    :type ai: float
+    :param aj: Angle about the j or y axis in radians.
+    :type aj: float
+    :param ak: Angle about the k or z axis in radians.
+    :type ak: float
+    :return: An array containing the x,y,z,w quaternion values calculated
+    :return: numpy.array()
+    """
+    ai /= 2.0
+    aj /= 2.0
+    ak /= 2.0
+    ci = math.cos(ai)
+    si = math.sin(ai)
+    cj = math.cos(aj)
+    sj = math.sin(aj)
+    ck = math.cos(ak)
+    sk = math.sin(ak)
+    cc = ci * ck
+    cs = ci * sk
+    sc = si * ck
+    ss = si * sk
+
+    q = np.empty((4,))
+    q[0] = cj * sc - sj * cs
+    q[1] = cj * ss + sj * cc
+    q[2] = cj * cs - sj * sc
+    q[3] = cj * cc + sj * ss
+
+    return q
+
+
+class PickNode(Node):
+    """
+    ROS 2 Node for initiating and managing robotic pick actions.
+
+    This class initializes and manages the `pick_node`.
+    """
+
+    def __init__(self):
+        """Init the PickNode."""
+        super().__init__('pick_node')
+        self.get_logger().debug('Pick Node Started!')
+        self.mpi = MotionPlanningInterface(self)
+        client_cb_group = MutuallyExclusiveCallbackGroup()
+        self.pickServe = self.create_service(Empty, 'pick', self.pick_callback,
+                                             callback_group=client_cb_group)
+        self.goHome = self.create_service(
+            Empty, '/gohome', self.go_home, callback_group=client_cb_group
+        )
+        # Links 1-7 Joint positions for home position [deg]
+        self.home_joints = [0, -45, 0, -135, 0, 90, 45]
+        # convert to radians
+        self.home_joints = [math.radians(i) for i in self.home_joints]
+
+    async def pick_callback(self, request, response):
+        """
+        Handle a pick operation by creating a scene and moving an object along a path.
+
+        This function sets up a planning scene with a known object and obstacle,
+        then plans and executes a path to move the object through the scene.
+
+        :param request: The request object, typically an empty placeholder for this operation.
+        :type request: std_msgs/Empty
+        :param response: The response object to be returned after completing the operation.
+        :type response: std_msgs/Empty
+        :param ak: The angle about the k (z-axis) in radians for the object's rotation.
+        :type ak: float
+        :return: An empty response object indicating the operation was completed.
+        :rtype: std_msgs/Empty
+        """
+        self.get_logger().debug('Pick Callback Called!')
+
+        standardPose = await self.mpi.getCurrentPose()
+
+        # Setting The Scene
+        table = Pose()
+        table.position.x = 0.0
+        table.position.y = 0.0
+        table.position.z = -0.03
+        tableDims = [2.0, 2.0, 0.05]
+        tableShape = 'Box'
+
+        object1 = Pose()
+        object1.position.x = 0.5
+        object1.position.y = 0.0
+        object1.position.z = 0.05
+        object1Dims = [0.06, 0.06, 0.06]
+        object1Shape = 'Box'
+
+        obstacle = Pose()
+        obstacle.position.x = 0.4
+        obstacle.position.y = 0.4
+        obstacle.position.z = 0.5
+        obstacleDims = [1.0, 0.2]
+        obstacleShape = 'Cylinder'
+
+        await self.mpi.loadPlanningScene([table, object1, obstacle],
+                                         [tableDims, object1Dims, obstacleDims],
+                                         [tableShape, object1Shape, obstacleShape])
+
+        # Move the arm directly above the object
+        currentPose = await self.mpi.getCurrentPose()
+        newZ = object1.position.z + 0.1
+        goal = [
+            object1.position.x,
+            object1.position.y,
+            newZ,
+            currentPose.pose.orientation.x,
+            currentPose.pose.orientation.y,
+            currentPose.pose.orientation.z,
+            currentPose.pose.orientation.w,
+        ]
+        pathType = 'POSE'
+        self.get_logger().debug(f'MPI PlanPath pT:{pathType} \n goal:{goal}')
+        await self.mpi.planPath(pathType, goal, execute=True)
+
+        # Open the gripper
+        self.get_logger().debug('Opening Gripper')
+        await self.mpi.operateGripper(openGripper=True)
+
+        # Move directly downwards until the object is between the grippers
+        newZ = object1.position.z - 0.1
+        goal = [
+            object1.position.x,
+            object1.position.y,
+            object1.position.z,
+            currentPose.pose.orientation.x,
+            currentPose.pose.orientation.y,
+            currentPose.pose.orientation.z,
+            currentPose.pose.orientation.w,
+        ]
+        pathType = 'CARTESIAN'
+        self.get_logger().debug('Move to have object between gripper.')
+        self.get_logger().debug(f'MPI PlanPath pT:{pathType} \n goal:{goal}')
+        await self.mpi.planPath(pathType, goal, execute=True)
+
+        # Re-orient end-effector
+        currentPose = await self.mpi.getCurrentPose()
+        goal = [
+            currentPose.pose.position.x,
+            currentPose.pose.position.y,
+            currentPose.pose.position.z,
+            standardPose.pose.orientation.x,
+            standardPose.pose.orientation.y,
+            standardPose.pose.orientation.z,
+            standardPose.pose.orientation.w,
+        ]
+        pathType = 'POSE'
+        self.get_logger().debug(f'MPI PlanPath pT:{pathType} \n goal:{goal}')
+        await self.mpi.planPath(pathType, goal, execute=True)
+
+        # Attach a rectangle to the end-effector, remove from scene
+        self.get_logger().debug('Attach box to robot.')
+        await self.mpi.attachObject('Box_1')
+        await self.mpi.removeObjFromScene('Box_1')
+
+        # Close the gripper
+        self.get_logger().debug('Closing Gripper')
+        await self.mpi.operateGripper(openGripper=False)
+
+        # Lift the object slightly off the table
+        newZ = object1.position.z + 0.2
+        goal = [
+            object1.position.x,
+            object1.position.y,
+            newZ,
+            standardPose.pose.orientation.x,
+            standardPose.pose.orientation.y,
+            standardPose.pose.orientation.z,
+            standardPose.pose.orientation.w,
+        ]
+        pathType = 'CARTESIAN'
+        self.get_logger().debug(f'MPI PlanPath pT:{pathType} \n goal:{goal}')
+        await self.mpi.planPath(pathType, goal, execute=True)
+
+        # Move the object to the other side of the obstacle
+        goal = [-1.08, -1.5, 1.58, -1.187, 1.5, 1.55, 1.658]
+        pathType = 'JOINT'
+        self.get_logger().debug(f'MPI PlanPath pT:{pathType} \n goal:{goal}')
+        await self.mpi.planPath(pathType, goal, execute=True)
+
+        # Release the object and detach the rectangle
+        await self.mpi.detachObject('Box_1')
+
+        # Move the arm back to the starting position
+        goal = [0.0698, -1.0995, -1.0995, -1.5533, -1.0995, 1.0995, -0.5061]
+        pathType = 'JOINT'
+        self.get_logger().debug(f'MPI PlanPath pT:{pathType} \n goal:{goal}')
+        await self.mpi.planPath(pathType, goal, execute=True)
+
+        return response
+
+    async def go_home(self, request, response):
+        """TODO."""
+        # Move the arm directly above the object
+        goal = self.home_joints
+        pathType = 'JOINT'
+        self.get_logger().debug(f'MPI PlanPath pT:{pathType} \n goal:{goal}')
+        await self.mpi.planPath(pathType, goal, execute=True)
+        return response
+
+
+def main(args=None):
+    """
+    Initialize and run the PickNode.
+
+    This function sets up the ROS 2 environment, initializes `PickNode`.
+
+    Usage Example:
+    --------------
+    Run this node for testing:
+
+    python3 moveitapi/moveitapi/pick_node.py
+
+    The `PickNode` will be spun, and it will maintain an active ROS 2 node until interrupted.
+
+
+    """
+    rclpy.init(args=args)
+    pick_node = PickNode()
+    rclpy.spin(pick_node)
+    rclpy.shutdown()
+
+
+if __name__ == '__main__':
+    main()

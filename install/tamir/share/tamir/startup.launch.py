@@ -49,7 +49,7 @@ def generate_launch_description():
             #         EqualsSubstitution(LaunchConfiguration('demo'), 'False')
             #     ),
             # ),
-            Node(package='tamir', executable='bluetooth_node'),
+            Node(package='tamir', executable='tamir_interface'),
             # Node(package='toast', executable='transform_auditor')
         ]
     )

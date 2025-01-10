@@ -1,20 +1,22 @@
-import pygame
-import time
-import threading
+#!/usr/bin/env python3
+import subprocess
+from launch_ros.substitutions import FindPackageShare
+from launch.substitutions import PathJoinSubstitution
+from launch.utilities import perform_substitutions
+import os
 
+def play_audio(file_path):
+    """Play audio."""
+    # Get the package share directory path
+    tamir = FindPackageShare('tamir').find('tamir')
+    # Join paths correctly - remove the list brackets
+    full_path = os.path.join(tamir, file_path)
+    # Play the audio file
+    subprocess.run(['mpg321', full_path])
 
-def play_music(mp3File):
-    pygame.mixer.init()
-    pygame.mixer.music.load(mp3File)
-    pygame.mixer.music.play()
+def main(args=None):
+    """Init music node."""
+    play_audio('experiment.mp3')
 
-
-def wait_for_input():
-    input()
-    pygame.mixer.music.stop()
-
-music_thread = threading.Thread(target=play_music, args=('Cynthia.mp3',))
-input_thread = threading.Thread(target=wait_for_input)
-
-music_thread.start()
-input_thread.start()
+if __name__ == '__main__':
+    main()

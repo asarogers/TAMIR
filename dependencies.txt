@@ -1,0 +1,6 @@
+pip3 install
+- bleak
+- pygame
+
+sudo apt-get install
+- mpg321
