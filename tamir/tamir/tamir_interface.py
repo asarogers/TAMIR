@@ -81,8 +81,9 @@ class TamirInterface(Node):
 
 
 
-    def play_audio(self, file_path):
+    def play_audio(self, request, response):
         """Play audio."""
+        file_path = 'experiment.mp3'
         tamir = FindPackageShare('tamir').find('tamir')
         full_path = os.path.join(tamir, file_path)
         subprocess.run(['mpg321', full_path])

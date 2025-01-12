@@ -9,7 +9,7 @@ from launch_ros.substitutions import FindPackageShare
 
 def generate_launch_description():
 
-    venv_path = os.path.expanduser('~/repo/winter/project/TAMIR/myenv')
+    venv_path = os.path.expanduser('/myenv')
 
     # Command to source the virtual environment
     source_venv = ExecuteProcess(
