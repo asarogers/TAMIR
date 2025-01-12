@@ -1,12 +1,22 @@
-"""Launch necessary nodes to make toast."""
-from launch import LaunchDescription
-from launch_ros.actions import Node
 import os
+from launch import LaunchDescription
+from launch.actions import IncludeLaunchDescription, ExecuteProcess
+from launch_ros.actions import Node
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.substitutions import PathJoinSubstitution
+from launch_ros.substitutions import FindPackageShare
 
 
 def generate_launch_description():
-    """TODO."""
-    os.environ["PYTHONPATH"] += ":/path/to/myenv/lib/python3.12/site-packages"
+
+    venv_path = os.path.expanduser('~/repo/winter/project/TAMIR/myenv')
+
+    # Command to source the virtual environment
+    source_venv = ExecuteProcess(
+        cmd=['bash', '-c', f'source {venv_path}/bin/activate && exec "$@"', 'bash'],
+        output='screen'
+    )
+    
     return LaunchDescription(
         [
             # DeclareLaunchArgument(
@@ -49,7 +59,11 @@ def generate_launch_description():
             #         EqualsSubstitution(LaunchConfiguration('demo'), 'False')
             #     ),
             # ),
-            Node(package='tamir', executable='tamir_interface'),
+            Node(
+            package='tamir',
+            executable='tamir_interface',
+            output='screen',
+            ),
             # Node(package='toast', executable='transform_auditor')
         ]
     )
