@@ -16,7 +16,7 @@ source myenv/bin/activate
 pip install -r requirements.txt
 
 # Add the virtual environment's site-packages to PYTHONPATH in ~/.bashrc if not already added
-bashrc_entry='export PYTHONPATH="/home/asaace00/repo/winter/project/TAMIR/tamir/myenv/lib/python3.12/site-packages:$PYTHONPATH"'
+bashrc_entry='export PYTHONPATH="/opt/ros/jazzy/lib/python3.12/site-packages:/home/asaace00/repo/winter/project/TAMIR/tamir/myenv/lib/python3.12/site-packages:$PYTHONPATH"'
 if ! grep -Fxq "$bashrc_entry" ~/.bashrc; then
     echo "unset PYTHONPATH" >> ~/.bashrc
     echo "$bashrc_entry" >> ~/.bashrc

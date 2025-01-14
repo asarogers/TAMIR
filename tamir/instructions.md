@@ -1,3 +1,15 @@
+1. Install packages and create virtual enviroment
+./install_dependencies.sh 
+
+2. Source changes
+source ~/.bashrc
+
+3. launch application
+colcon clean workspace -y && colcon build && source install/setup.bash && ros2 launch tamir startup.launch.py
+
+
+OR
+
 1. Create a virtual enviroment
 ```
 python3 -m venv myenv
@@ -13,4 +25,5 @@ source myenv/bin/activate
 4. install packages
 pip3 install -r requirements.txt
 
-5. 
+5. run this:
+colcon clean workspace -y && colcon build && source install/setup.bash && ros2 launch tamir startup.launch.py
