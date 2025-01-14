@@ -17,7 +17,6 @@ setup(
             'sound/anti_dog.mp3',
             'sound/experiment.mp3',
             'sound/high_pitch.mp3',
-
         ]),
 
     ],
@@ -31,7 +30,8 @@ setup(
     entry_points={
         'console_scripts': [
             'tamir_interface = tamir.tamir_interface:main',
-            'music_node = tamir.playmusic:main'
+            'music_node = tamir.playmusic:main',
+            'vision = tamir.vision:main'
         ],
     },
 )
