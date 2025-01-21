@@ -44,6 +44,7 @@ import os
 from std_srvs.srv import Empty
 from bleak import BleakScanner, BleakClient
 import ultralytics
+from rclpy.executors import MultiThreadedExecutor
 
 class TamirInterface(Node):
     """
@@ -75,10 +76,12 @@ class TamirInterface(Node):
         self.print = self.get_logger().info
         self.bluetooth = Bluetooth_Node()
         client_cb_group = ReentrantCallbackGroup()
-
+        self.target_device = "26:91:71:54:00:09"
+        self.client = None
 
         self.correctiveSignal = self.create_service(Empty, 'correctiveSignal', self.play_audio, callback_group=client_cb_group)
         self.bluetoothScanner = self.create_service(Empty, 'scan_for_devices', self.bluetooth_scanner, callback_group=client_cb_group)
+        self.pairBluetooth = self.create_service(Empty, 'pair_bluetooth', self.connect_speaker, callback_group=client_cb_group)
 
 
 
@@ -106,31 +109,79 @@ class TamirInterface(Node):
     async def scan_for_devices(self):
         self.print('scanning')
         devices = await BleakScanner.discover()
+        found = False
 
         if not devices:
             self.print('No devices found.')
             return False
         
         for device in devices:
-            self.print(f"devices {device.name} [{device.address}]")
+            self.print(f"devices {device}")
         self.print("done")
- 
-async def run(node):
-    """Main asynchronous task for the node."""
-    paired = await node.pair_with_speaker()
 
-    if paired:
-        # Keep the node running
-        node.print("Node running. Use Ctrl+C to exit.")
+
+    def connect_speaker(self, request, response):
+        """Pair with the target Bluetooth device."""
         try:
-            while rclpy.ok():
-                rclpy.spin_once(node, timeout_sec=0.1)
-        except KeyboardInterrupt:
-            node.print("Node interrupted by user.")
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+            loop.run_until_complete(self.pair_bluetooth_speaker())
+            loop.close()
+
+            return response
+
+        except Exception as e:
+            self.print(f"Error pairing with device: {str(e)}")
+            return response
+
+        
+    async def pair_bluetooth_speaker(self):
+        try:
+            self.print('Scanning for Bluetooth devices...')
+            devices = await BleakScanner.discover()
+
+            if not devices:
+                self.print('No devices found.')
+                return False
+
+            # Check if the target device is available
+            found_device = next((device for device in devices if device.address == self.target_device), None)
+
+            if not found_device:
+                self.print(f"Target device with address {self.target_device} not found.")
+                return False
+
+            self.print(f"Found target device: {found_device.name} [{found_device.address}]")
+
+            # Attempt to connect persistently
+            if not self.client:
+                self.client = BleakClient(self.target_device)
+            
+            if not self.client.is_connected:
+                await self.client.connect()
+                self.print(f"Successfully connected to {found_device.name} [{found_device.address}]")
+            else:
+                self.print(f"Already connected to {found_device.name} [{found_device.address}]")
+
+            return True
+
+        except Exception as e:
+            self.print(f"Error during pairing: {str(e)}")
+            return False
+
+
+    async def disconnect_client(self):
+        """Safely disconnect the BleakClient."""
+        try:
+            if self.client and await self.client.is_connected():
+                await self.client.disconnect()
+                self.print('Disconnected from Bluetooth device.')
+        except Exception as e:
+            self.print(f"Error during disconnection: {str(e)}")
         finally:
-            await node.disconnect()
-    else:
-        node.print("Could not pair with the device. Exiting.")
+            self.client = None  # Clean up the client reference
+
+        
 
 def main(args=None):
     """
@@ -146,28 +197,26 @@ def main(args=None):
 
     Example:
     --------
-    To run the node:
+     To run the node:
     >>> python3 tamir_interface.py
     """
     rclpy.init(args=args)
     tamir = TamirInterface()
 
+    # Create the executor
+    executor = MultiThreadedExecutor()
+    executor.add_node(tamir)
 
     try:
-        # Run the Bluetooth_Node asynchronously
-        # asyncio.run(run(tamir.bluetooth))
-        executor = rclpy.executors.MultiThreadedExecutor()
-        executor.add_node(tamir)
-        try:
-            executor.spin()
-        finally:
-            executor.shutdown()
-            tamir.destroy_node()
-            rclpy.shutdown()
+        executor.spin()
     except KeyboardInterrupt:
-        pass
+        tamir.get_logger().info("Shutting down due to keyboard interrupt.")
     finally:
+        tamir.disconnect_client()
+        executor.shutdown()
+        tamir.destroy_node()
         rclpy.shutdown()
+
 
 
 if __name__ == '__main__':

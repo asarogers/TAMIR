@@ -43,6 +43,7 @@ from launch_ros.substitutions import FindPackageShare
 import os
 from std_srvs.srv import Empty
 from bleak import BleakScanner, BleakClient
+import ultralytics
 
 class TamirInterface(Node):
     """
