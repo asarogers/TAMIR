@@ -1,0 +1,6 @@
+msg/BehaviorList.idl
+msg/BehaviorList.msg
+msg/Behaviors.idl
+msg/Behaviors.msg
+srv/Waypoints.idl
+srv/Waypoints.srv

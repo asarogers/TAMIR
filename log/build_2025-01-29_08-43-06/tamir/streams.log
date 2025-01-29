@@ -1,0 +1,52 @@
+[0.459s] Invoking command in '/home/asaace00/repo/winter/project/TAMIR/tamir': PS1=(myenv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 "(%s)")\$ PYTHONPATH=/home/asaace00/repo/winter/project/TAMIR/build/tamir/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/asaace00/repo/winter/project/TAMIR/install/tamir/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(myenv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/tamir build --build-base /home/asaace00/repo/winter/project/TAMIR/build/tamir/build install --record /home/asaace00/repo/winter/project/TAMIR/build/tamir/install.log --single-version-externally-managed install_data
+[0.546s] /home/asaace00/repo/winter/project/TAMIR/tamir/myenv/lib/python3.12/site-packages/setuptools/_distutils/dist.py:270: UserWarning: Unknown distribution option: 'tests_require'
+[0.546s]   warnings.warn(msg)
+[0.624s] running egg_info
+[0.637s] creating ../build/tamir/tamir.egg-info
+[0.637s] writing ../build/tamir/tamir.egg-info/PKG-INFO
+[0.638s] writing dependency_links to ../build/tamir/tamir.egg-info/dependency_links.txt
+[0.638s] writing entry points to ../build/tamir/tamir.egg-info/entry_points.txt
+[0.638s] writing requirements to ../build/tamir/tamir.egg-info/requires.txt
+[0.638s] writing top-level names to ../build/tamir/tamir.egg-info/top_level.txt
+[0.638s] writing manifest file '../build/tamir/tamir.egg-info/SOURCES.txt'
+[0.665s] reading manifest file '../build/tamir/tamir.egg-info/SOURCES.txt'
+[0.665s] writing manifest file '../build/tamir/tamir.egg-info/SOURCES.txt'
+[0.665s] running build
+[0.665s] running build_py
+[0.665s] creating /home/asaace00/repo/winter/project/TAMIR/build/tamir/build/lib/tamir
+[0.666s] copying tamir/playmusic.py -> /home/asaace00/repo/winter/project/TAMIR/build/tamir/build/lib/tamir
+[0.666s] copying tamir/tamir_interface.py -> /home/asaace00/repo/winter/project/TAMIR/build/tamir/build/lib/tamir
+[0.666s] copying tamir/Bluetooth_Node.py -> /home/asaace00/repo/winter/project/TAMIR/build/tamir/build/lib/tamir
+[0.666s] copying tamir/__init__.py -> /home/asaace00/repo/winter/project/TAMIR/build/tamir/build/lib/tamir
+[0.666s] copying tamir/vision.py -> /home/asaace00/repo/winter/project/TAMIR/build/tamir/build/lib/tamir
+[0.666s] running install
+[0.669s] running install_lib
+[0.681s] creating /home/asaace00/repo/winter/project/TAMIR/install/tamir/lib/python3.12/site-packages/tamir
+[0.681s] copying /home/asaace00/repo/winter/project/TAMIR/build/tamir/build/lib/tamir/playmusic.py -> /home/asaace00/repo/winter/project/TAMIR/install/tamir/lib/python3.12/site-packages/tamir
+[0.681s] copying /home/asaace00/repo/winter/project/TAMIR/build/tamir/build/lib/tamir/tamir_interface.py -> /home/asaace00/repo/winter/project/TAMIR/install/tamir/lib/python3.12/site-packages/tamir
+[0.681s] copying /home/asaace00/repo/winter/project/TAMIR/build/tamir/build/lib/tamir/Bluetooth_Node.py -> /home/asaace00/repo/winter/project/TAMIR/install/tamir/lib/python3.12/site-packages/tamir
+[0.681s] copying /home/asaace00/repo/winter/project/TAMIR/build/tamir/build/lib/tamir/__init__.py -> /home/asaace00/repo/winter/project/TAMIR/install/tamir/lib/python3.12/site-packages/tamir
+[0.681s] copying /home/asaace00/repo/winter/project/TAMIR/build/tamir/build/lib/tamir/vision.py -> /home/asaace00/repo/winter/project/TAMIR/install/tamir/lib/python3.12/site-packages/tamir
+[0.682s] byte-compiling /home/asaace00/repo/winter/project/TAMIR/install/tamir/lib/python3.12/site-packages/tamir/playmusic.py to playmusic.cpython-312.pyc
+[0.682s] byte-compiling /home/asaace00/repo/winter/project/TAMIR/install/tamir/lib/python3.12/site-packages/tamir/tamir_interface.py to tamir_interface.cpython-312.pyc
+[0.683s] byte-compiling /home/asaace00/repo/winter/project/TAMIR/install/tamir/lib/python3.12/site-packages/tamir/Bluetooth_Node.py to Bluetooth_Node.cpython-312.pyc
+[0.683s] byte-compiling /home/asaace00/repo/winter/project/TAMIR/install/tamir/lib/python3.12/site-packages/tamir/__init__.py to __init__.cpython-312.pyc
+[0.683s] byte-compiling /home/asaace00/repo/winter/project/TAMIR/install/tamir/lib/python3.12/site-packages/tamir/vision.py to vision.cpython-312.pyc
+[0.684s] running install_data
+[0.684s] creating /home/asaace00/repo/winter/project/TAMIR/install/tamir/share/ament_index/resource_index/packages
+[0.684s] copying resource/tamir -> /home/asaace00/repo/winter/project/TAMIR/install/tamir/share/ament_index/resource_index/packages
+[0.684s] copying package.xml -> /home/asaace00/repo/winter/project/TAMIR/install/tamir/share/tamir
+[0.684s] copying launch/startup.launch.py -> /home/asaace00/repo/winter/project/TAMIR/install/tamir/share/tamir
+[0.684s] copying launch/playmusic.launch.py -> /home/asaace00/repo/winter/project/TAMIR/install/tamir/share/tamir
+[0.684s] copying sound/535_Silent.mp3 -> /home/asaace00/repo/winter/project/TAMIR/install/tamir/share/tamir
+[0.684s] copying sound/anti_dog.mp3 -> /home/asaace00/repo/winter/project/TAMIR/install/tamir/share/tamir
+[0.684s] copying sound/experiment.mp3 -> /home/asaace00/repo/winter/project/TAMIR/install/tamir/share/tamir
+[0.684s] copying sound/high_pitch.mp3 -> /home/asaace00/repo/winter/project/TAMIR/install/tamir/share/tamir
+[0.684s] running install_egg_info
+[0.698s] Copying ../build/tamir/tamir.egg-info to /home/asaace00/repo/winter/project/TAMIR/install/tamir/lib/python3.12/site-packages/tamir-0.0.0-py3.12.egg-info
+[0.698s] running install_scripts
+[0.770s] Installing music_node script to /home/asaace00/repo/winter/project/TAMIR/install/tamir/lib/tamir
+[0.770s] Installing tamir_interface script to /home/asaace00/repo/winter/project/TAMIR/install/tamir/lib/tamir
+[0.770s] Installing vision script to /home/asaace00/repo/winter/project/TAMIR/install/tamir/lib/tamir
+[0.771s] writing list of installed files to '/home/asaace00/repo/winter/project/TAMIR/build/tamir/install.log'
+[0.784s] Invoked command in '/home/asaace00/repo/winter/project/TAMIR/tamir' returned '0': PS1=(myenv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 "(%s)")\$ PYTHONPATH=/home/asaace00/repo/winter/project/TAMIR/build/tamir/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/asaace00/repo/winter/project/TAMIR/install/tamir/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(myenv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/tamir build --build-base /home/asaace00/repo/winter/project/TAMIR/build/tamir/build install --record /home/asaace00/repo/winter/project/TAMIR/build/tamir/install.log --single-version-externally-managed install_data
