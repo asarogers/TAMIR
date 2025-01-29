@@ -1,2 +1,0 @@
-/home/asaace00/repo/winter/project/TAMIR/tamir/myenv/lib/python3.12/site-packages/setuptools/_distutils/dist.py:270: UserWarning: Unknown distribution option: 'tests_require'
-  warnings.warn(msg)

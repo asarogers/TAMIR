@@ -45,6 +45,8 @@ from std_srvs.srv import Empty
 from bleak import BleakScanner, BleakClient
 import ultralytics
 from rclpy.executors import MultiThreadedExecutor
+from tamir_interface.msg import BehaviorList 
+
 
 class TamirInterface(Node):
     """
@@ -83,14 +85,31 @@ class TamirInterface(Node):
         self.bluetoothScanner = self.create_service(Empty, 'scan_for_devices', self.bluetooth_scanner, callback_group=client_cb_group)
         self.pairBluetooth = self.create_service(Empty, 'pair_bluetooth', self.connect_speaker, callback_group=client_cb_group)
 
+        self.subscription = self.create_subscription(
+                    BehaviorList,
+                    'behavior_msg',
+                    self.listener_callback,
+                    10)
+        self.behavior = None
+        
+
+    def listener_callback(self, msg):
+        # states_info = [{"name": state.name, "state": state.state} for state in msg.states]
+        # self.get_logger().info(f'Received: {states_info}')
+        self.behavior = msg.states[0]
 
 
     def play_audio(self, request, response):
-        """Play audio."""
-        file_path = 'experiment.mp3'
+        """Play audio starting from 25 seconds and stop after 5 seconds."""
+        file_path = 'high_pitch.mp3'
         tamir = FindPackageShare('tamir').find('tamir')
         full_path = os.path.join(tamir, file_path)
-        subprocess.run(['mpg321', full_path])
+        
+        # Play the audio starting at 25 seconds and play for 5 seconds
+        subprocess.run(['ffplay', '-ss', '35', '-t', '15', '-i', full_path, '-autoexit', '-nodisp'])
+        
+        return response
+
 
     def bluetooth_scanner(self, request, response):
         """Scan for available bluetooth devices"""
@@ -120,20 +139,32 @@ class TamirInterface(Node):
         self.print("done")
 
 
-    def connect_speaker(self, request, response):
+    async def connect_speaker(self, request, response):
         """Pair with the target Bluetooth device."""
         try:
+            # if await self.check_device_connected(self.target_device) is False:
+            # print("No device connected")
             loop = asyncio.new_event_loop()
             asyncio.set_event_loop(loop)
             loop.run_until_complete(self.pair_bluetooth_speaker())
             loop.close()
-
+            print("Device connected")
             return response
 
         except Exception as e:
             self.print(f"Error pairing with device: {str(e)}")
             return response
+        
+    async def check_device_connected(self, device_address):
+        try:
+            async with BleakClient(device_address) as client:
+                connected = await client.is_connected()
+                print(f"Device {device_address} connected: {connected}")
+                return True
+            return False
+        except Exception as e:
 
+            print(f"Error checking device: {e}")
         
     async def pair_bluetooth_speaker(self):
         try:
@@ -209,6 +240,7 @@ def main(args=None):
 
     try:
         executor.spin()
+        tamir.print("Hello")
     except KeyboardInterrupt:
         tamir.get_logger().info("Shutting down due to keyboard interrupt.")
     finally:

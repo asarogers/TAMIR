@@ -1,3 +1,6 @@
 bleak
 ultralytics
 numpy<2.0
+empy
+catkin_pkg
+lark
