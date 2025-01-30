@@ -1,4 +1,0 @@
-[console_scripts]
-music_node = tamir.playmusic:main
-tamir_interface = tamir.tamir_interface:main
-vision = tamir.vision:main
