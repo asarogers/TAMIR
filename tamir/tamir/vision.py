@@ -65,8 +65,8 @@ class YoloVisualizer(Node):
         self.valid_names = ["dog"]
         self.y_min = 1000
         self.y_max = 0
-        self.door_x = -0.291
-        self.door_z = 1.9
+        self.door_x = 0.2
+        self.door_z = 2.7
         self.behavior= {
             "dogIsInBathroom" : False
         }
@@ -74,14 +74,18 @@ class YoloVisualizer(Node):
         self.behaviorPublisher = self.create_publisher(BehaviorList, "behavior_msg", 10)
     
     def checkBehavior(self,class_name, x, y, z):
-        # "3D Coordinates of {class_name}: x={x:.3f}, y={y:.3f}, z={z:.3f}"
+        # self.logger(f"3D Coordinates of {class_name}: x={x:.3f}, y={y:.3f}, z={z:.3f}")
         # self.logger(f"3D Coords of {class_name}: x={x:.3f}")
         if z >= self.door_z:
-            # self.logger("passed by z")
+        #     self.logger("passed by z")
+        #     self.logger(f"3D Coords of {class_name}: x={x:.3f}")
             door_x_min = self.door_x - (self.door_width / 2)
             door_x_max = self.door_x + (self.door_width / 2)
+            # self.logger(f"{class_name}:  {door_x_min} < {x:.3f} <= {door_x_max}")
+
             if door_x_min <= x <= door_x_max:
                 self.logger("Dog is in bathroom")
+                # self.logger(f"3D Coords of {class_name}: x={x:.3f}")
                 self.behavior["dogIsInBathroom"] = True
         elif z < self.door_z:
             self.behavior["dogIsInBathroom"] = False
@@ -156,6 +160,7 @@ class YoloVisualizer(Node):
             msg.states = [behavior]
 
             # msg.states = states = [behavior]
+            # self.logger(f"states = {msg}")
             self.behaviorPublisher.publish(msg)
         
         # Display the result

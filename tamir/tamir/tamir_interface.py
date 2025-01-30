@@ -80,10 +80,18 @@ class TamirInterface(Node):
         client_cb_group = ReentrantCallbackGroup()
         self.target_device = "26:91:71:54:00:09"
         self.client = None
+        self.soundPosition = 35
 
-        self.correctiveSignal = self.create_service(Empty, 'correctiveSignal', self.play_audio, callback_group=client_cb_group)
+        self.correctiveSignalService = self.create_service(Empty, 'correctiveSignal', self.play_audio, callback_group=client_cb_group)
         self.bluetoothScanner = self.create_service(Empty, 'scan_for_devices', self.bluetooth_scanner, callback_group=client_cb_group)
         self.pairBluetooth = self.create_service(Empty, 'pair_bluetooth', self.connect_speaker, callback_group=client_cb_group)
+
+        self.timer = self.create_timer(1, self.process_latest_message)
+
+        self.correctiveSignal_client = self.create_client(Empty, "correctiveSignal")
+        while not self.correctiveSignal_client.wait_for_service(timeout_sec=2.0):
+            self.print("Waiting for corrective service...")
+
 
         self.subscription = self.create_subscription(
                     BehaviorList,
@@ -91,12 +99,25 @@ class TamirInterface(Node):
                     self.listener_callback,
                     10)
         self.behavior = None
-        
+    
+    def process_latest_message(self):
+        """Process the latest message once every second."""
+        if hasattr(self.behavior, "state") and self.behavior.state:
+            self.print("dog is in bathroom")
+            # self.print(f"behavior = {self.behavior}")
+            self.begin_corrective_signal()
+
 
     def listener_callback(self, msg):
-        # states_info = [{"name": state.name, "state": state.state} for state in msg.states]
-        # self.get_logger().info(f'Received: {states_info}')
         self.behavior = msg.states[0]
+    
+    def begin_corrective_signal(self):
+        try:
+            req = Empty.Request()
+            future = self.correctiveSignal_client.call_async(req)
+
+        except Exception as e:
+            self.get_logger().error(f"Error calling corrective signal service: {e}")
 
 
     def play_audio(self, request, response):
@@ -106,8 +127,8 @@ class TamirInterface(Node):
         full_path = os.path.join(tamir, file_path)
         
         # Play the audio starting at 25 seconds and play for 5 seconds
-        subprocess.run(['ffplay', '-ss', '35', '-t', '15', '-i', full_path, '-autoexit', '-nodisp'])
-        
+        subprocess.run(['ffplay', '-ss', f'{self.soundPosition}', '-t', '1', '-i', full_path, '-autoexit', '-nodisp'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        self.soundPosition += 1
         return response
 
 
@@ -180,6 +201,7 @@ class TamirInterface(Node):
 
             if not found_device:
                 self.print(f"Target device with address {self.target_device} not found.")
+                    
                 return False
 
             self.print(f"Found target device: {found_device.name} [{found_device.address}]")
@@ -240,7 +262,6 @@ def main(args=None):
 
     try:
         executor.spin()
-        tamir.print("Hello")
     except KeyboardInterrupt:
         tamir.get_logger().info("Shutting down due to keyboard interrupt.")
     finally:
