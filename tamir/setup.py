@@ -11,12 +11,14 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, [
             'package.xml',
+             'config/tags.yaml',
             'launch/startup.launch.py',
             'launch/playmusic.launch.py',
             'sound/535_Silent.mp3',
             'sound/anti_dog.mp3',
             'sound/experiment.mp3',
             'sound/high_pitch.mp3',
+            'config/toast_view.rviz',
         ]),
 
     ],
@@ -28,7 +30,8 @@ setup(
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={
-        'console_scripts': [
+        'console_scripts': [ 
+            'camera_localizer = tamir.camera_localizer:main',
             'tamir_interface = tamir.tamir_interface:main',
             'music_node = tamir.playmusic:main',
             'vision = tamir.vision:main'

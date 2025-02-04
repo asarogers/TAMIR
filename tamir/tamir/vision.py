@@ -22,7 +22,7 @@ import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Image, CameraInfo
 from cv_bridge import CvBridge
-
+from apriltag_msgs.msg import AprilTagDetectionArray
 import cv2
 import numpy as np
 from ultralytics import YOLO
@@ -70,9 +70,37 @@ class YoloVisualizer(Node):
         self.behavior= {
             "dogIsInBathroom" : False
         }
+        self.target_detection = False
+        self.target_centre = None
+        self.counter = 0
 
         self.behaviorPublisher = self.create_publisher(BehaviorList, "behavior_msg", 10)
+        self.detection_sub = self.create_subscription(AprilTagDetectionArray, 'detections',
+                                                      self.detection_callback, 10)
     
+    def detection_callback(self, msg):
+        """
+        Handle AprilTag detection messages.
+
+        Extracts information about the first detected tag (e.g., ID, center coordinates),
+        updates the detection status, and logs the detection.
+
+        :param msg: AprilTag detection array message containing detected tag details.
+        :type msg: apriltag_msgs.msg.AprilTagDetectionArray
+
+        """
+        if len(msg.detections) > 0:
+            detection = msg.detections[0]
+            # self.logger(f'Tag Data: {detection}')
+            self.target_detection = True
+            self.target_centre = (
+                int(detection.centre.x),
+                int(detection.centre.y)
+            )
+        else:
+            self.target_detection = False
+            self.target_centre = None
+
     def checkBehavior(self,class_name, x, y, z):
         # self.logger(f"3D Coordinates of {class_name}: x={x:.3f}, y={y:.3f}, z={z:.3f}")
         # self.logger(f"3D Coords of {class_name}: x={x:.3f}")
@@ -107,6 +135,9 @@ class YoloVisualizer(Node):
         # Run YOLO inference
         results = self.model.predict(current_frame, verbose=False)
 
+        if self.target_detection and self.target_centre is not None:
+            cv2.circle(current_frame, self.target_centre, 10, (0, 255, 0), -1)
+
         if len(results) > 0:
             detections = results[0].boxes
             for box in detections:
@@ -128,29 +159,30 @@ class YoloVisualizer(Node):
                         (0, 255, 0),
                         2
                     )
+                    self.capture_picture(current_frame, x1, x2, y1, y2)
 
                     # Get depth value and compute 3D coordinates
-                    if self.depth_image is not None and self.camera_info is not None:
+            #         if self.depth_image is not None and self.camera_info is not None:
                         
-                        center_x = int((x1 + x2) / 2)
-                        center_y = int((y1 + y2) / 2)
-                        depth_value = self.depth_image[center_y, center_x]
+            #             center_x = int((x1 + x2) / 2)
+            #             center_y = int((y1 + y2) / 2)
+            #             depth_value = self.depth_image[center_y, center_x]
 
-                        if depth_value > 0:  # Ensure valid depth
-                            x, y, z = self.pixel_to_3d(center_x, center_y, depth_value)
-                            x = x /1000
-                            y = y /1000
-                            z = z /1000
-                            self.checkBehavior(class_name, x, y, z)
+            #             if depth_value > 0:
+            #                 x, y, z = self.pixel_to_3d(center_x, center_y, depth_value)
+            #                 x = x /1000
+            #                 y = y /1000
+            #                 z = z /1000
+            #                 self.checkBehavior(class_name, x, y, z)
                             
-                    elif  self.depth_image is None:
-                        self.logger("No depth image")
-                    elif self.camera_info is  None:
-                        self.logger("No camera info")
-                    else:
-                        self.logger("A different error")
-            if self.behavior["dogIsInBathroom"]:
-                self.logger("****Dog found in bathroom")
+            #         elif  self.depth_image is None:
+            #             self.logger("No depth image")
+            #         elif self.camera_info is  None:
+            #             self.logger("No camera info")
+            #         else:
+            #             self.logger("A different error")
+            # if self.behavior["dogIsInBathroom"]:
+            #     self.logger("****Dog found in bathroom")
             msg = BehaviorList()
 
             behavior = Behaviors()
@@ -179,6 +211,12 @@ class YoloVisualizer(Node):
         z = depth
 
         return x, y, z
+    
+    def capture_picture(self, current_frame, x1, x2, y1, y2):
+        self.counter +=1
+        filename = f"test_image{self.counter}.jpg"
+        cv2.imwrite(filename, current_frame[y1:y2, x1:x2])
+        print("Image saved!")
 
 
 def main(args=None):
