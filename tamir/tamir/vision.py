@@ -136,6 +136,7 @@ class YoloVisualizer(Node):
         results = self.model.predict(current_frame, verbose=False)
 
         if self.target_detection and self.target_centre is not None:
+            self.logger(f"center = {self.target_centre}")
             cv2.circle(current_frame, self.target_centre, 10, (0, 255, 0), -1)
 
         if len(results) > 0:

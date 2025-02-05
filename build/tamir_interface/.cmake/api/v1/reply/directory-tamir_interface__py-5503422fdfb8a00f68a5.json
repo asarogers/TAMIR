@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "tamir_interface__py",
+		"source" : "/home/asaace00/repo/winter/project/TAMIR/build/tamir_interface/tamir_interface__py"
+	}
+}

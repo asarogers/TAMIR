@@ -1,0 +1,8 @@
+{
+  "package_name": "tamir_interface",
+  "non_idl_tuples": [
+    "/home/asaace00/repo/winter/project/TAMIR/tamir_interface:srv/Waypoints.srv",
+    "/home/asaace00/repo/winter/project/TAMIR/tamir_interface:msg/Behaviors.msg",
+    "/home/asaace00/repo/winter/project/TAMIR/tamir_interface:msg/BehaviorList.msg"
+  ]
+}

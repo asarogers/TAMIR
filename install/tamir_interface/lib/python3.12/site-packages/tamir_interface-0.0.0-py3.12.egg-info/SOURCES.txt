@@ -1,0 +1,6 @@
+setup.py
+tamir_interface/__init__.py
+tamir_interface.egg-info/PKG-INFO
+tamir_interface.egg-info/SOURCES.txt
+tamir_interface.egg-info/dependency_links.txt
+tamir_interface.egg-info/top_level.txt

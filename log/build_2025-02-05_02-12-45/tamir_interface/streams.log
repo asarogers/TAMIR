@@ -1,0 +1,320 @@
+[0.142s] Invoking command in '/home/asaace00/repo/winter/project/TAMIR/build/tamir_interface': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/asaace00/repo/winter/project/TAMIR/install/tamir:/home/asaace00/repo/winter/project/install/tamir:/opt/ros/jazzy VIRTUAL_ENV_PROMPT=(myenv) /usr/bin/cmake /home/asaace00/repo/winter/project/TAMIR/tamir_interface -DCMAKE_INSTALL_PREFIX=/home/asaace00/repo/winter/project/TAMIR/install/tamir_interface
+[0.183s] -- The C compiler identification is GNU 13.2.0
+[0.222s] -- The CXX compiler identification is GNU 13.2.0
+[0.235s] -- Detecting C compiler ABI info
+[0.306s] -- Detecting C compiler ABI info - done
+[0.311s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.311s] -- Detecting C compile features
+[0.311s] -- Detecting C compile features - done
+[0.318s] -- Detecting CXX compiler ABI info
+[0.391s] -- Detecting CXX compiler ABI info - done
+[0.396s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.396s] -- Detecting CXX compile features
+[0.396s] -- Detecting CXX compile features - done
+[0.398s] -- Found ament_cmake: 2.5.3 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[0.474s] -- Found Python3: /home/asaace00/repo/winter/project/TAMIR/tamir/myenv/bin/python3 (found version "3.12.3") found components: Interpreter 
+[0.538s] -- Found rosidl_default_generators: 1.6.0 (/opt/ros/jazzy/share/rosidl_default_generators/cmake)
+[0.545s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.583s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.610s] -- Found rosidl_adapter: 4.6.5 (/opt/ros/jazzy/share/rosidl_adapter/cmake)
+[0.613s] -- Found geometry_msgs: 5.3.5 (/opt/ros/jazzy/share/geometry_msgs/cmake)
+[1.025s] -- Found ament_cmake_ros: 0.12.0 (/opt/ros/jazzy/share/ament_cmake_ros/cmake)
+[1.393s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.931s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.934s] -- Found python_cmake_module: 0.11.1 (/opt/ros/jazzy/share/python_cmake_module/cmake)
+[2.056s] -- Found PythonExtra: /home/asaace00/repo/winter/project/TAMIR/tamir/myenv/bin/python3  
+[2.528s] -- Found Python3: /home/asaace00/repo/winter/project/TAMIR/tamir/myenv/bin/python3 (found version "3.12.3") found components: Interpreter Development NumPy Development.Module Development.Embed 
+[2.568s] -- Found ament_lint_auto: 0.17.1 (/opt/ros/jazzy/share/ament_lint_auto/cmake)
+[2.586s] -- Added test 'lint_cmake' to check CMake code style
+[2.587s] -- Added test 'xmllint' to check XML markup files
+[2.589s] -- Configuring done (2.4s)
+[2.614s] -- Generating done (0.0s)
+[2.622s] -- Build files have been written to: /home/asaace00/repo/winter/project/TAMIR/build/tamir_interface
+[2.629s] Invoked command in '/home/asaace00/repo/winter/project/TAMIR/build/tamir_interface' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/asaace00/repo/winter/project/TAMIR/install/tamir:/home/asaace00/repo/winter/project/install/tamir:/opt/ros/jazzy VIRTUAL_ENV_PROMPT=(myenv) /usr/bin/cmake /home/asaace00/repo/winter/project/TAMIR/tamir_interface -DCMAKE_INSTALL_PREFIX=/home/asaace00/repo/winter/project/TAMIR/install/tamir_interface
+[2.630s] Invoking command in '/home/asaace00/repo/winter/project/TAMIR/build/tamir_interface': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/asaace00/repo/winter/project/TAMIR/install/tamir:/home/asaace00/repo/winter/project/install/tamir:/opt/ros/jazzy VIRTUAL_ENV_PROMPT=(myenv) /usr/bin/cmake --build /home/asaace00/repo/winter/project/TAMIR/build/tamir_interface -- -j32 -l32
+[2.670s] [  1%] [34m[1mGenerating type hashes for ROS interfaces[0m
+[2.673s] [  1%] Built target ament_cmake_python_copy_tamir_interface
+[2.796s] running egg_info
+[2.804s] creating tamir_interface.egg-info
+[2.804s] writing tamir_interface.egg-info/PKG-INFO
+[2.805s] writing dependency_links to tamir_interface.egg-info/dependency_links.txt
+[2.805s] writing top-level names to tamir_interface.egg-info/top_level.txt
+[2.805s] writing manifest file 'tamir_interface.egg-info/SOURCES.txt'
+[2.805s] [  1%] Built target tamir_interface__rosidl_generator_type_description
+[2.816s] [  3%] [34m[1mGenerating C code for ROS interfaces[0m
+[2.825s] [  5%] [34m[1mGenerating C++ code for ROS interfaces[0m
+[2.829s] reading manifest file 'tamir_interface.egg-info/SOURCES.txt'
+[2.830s] writing manifest file 'tamir_interface.egg-info/SOURCES.txt'
+[2.850s] [  5%] Built target ament_cmake_python_build_tamir_interface_egg
+[3.082s] [  5%] Built target tamir_interface__cpp
+[3.119s] [  7%] [32mBuilding C object CMakeFiles/tamir_interface__rosidl_generator_c.dir/rosidl_generator_c/tamir_interface/msg/detail/behavior_list__type_support.c.o[0m
+[3.120s] [ 11%] [32mBuilding C object CMakeFiles/tamir_interface__rosidl_generator_c.dir/rosidl_generator_c/tamir_interface/srv/detail/waypoints__description.c.o[0m
+[3.120s] [ 11%] [32mBuilding C object CMakeFiles/tamir_interface__rosidl_generator_c.dir/rosidl_generator_c/tamir_interface/srv/detail/waypoints__functions.c.o[0m
+[3.120s] [ 12%] [32mBuilding C object CMakeFiles/tamir_interface__rosidl_generator_c.dir/rosidl_generator_c/tamir_interface/srv/detail/waypoints__type_support.c.o[0m
+[3.120s] [ 14%] [32mBuilding C object CMakeFiles/tamir_interface__rosidl_generator_c.dir/rosidl_generator_c/tamir_interface/msg/detail/behaviors__description.c.o[0m
+[3.120s] [ 16%] [32mBuilding C object CMakeFiles/tamir_interface__rosidl_generator_c.dir/rosidl_generator_c/tamir_interface/msg/detail/behaviors__functions.c.o[0m
+[3.120s] [ 18%] [32mBuilding C object CMakeFiles/tamir_interface__rosidl_generator_c.dir/rosidl_generator_c/tamir_interface/msg/detail/behavior_list__description.c.o[0m
+[3.121s] [ 20%] [32mBuilding C object CMakeFiles/tamir_interface__rosidl_generator_c.dir/rosidl_generator_c/tamir_interface/msg/detail/behaviors__type_support.c.o[0m
+[3.121s] [ 22%] [32mBuilding C object CMakeFiles/tamir_interface__rosidl_generator_c.dir/rosidl_generator_c/tamir_interface/msg/detail/behavior_list__functions.c.o[0m
+[3.167s] [ 24%] [32m[1mLinking C shared library libtamir_interface__rosidl_generator_c.so[0m
+[3.213s] [ 24%] Built target tamir_interface__rosidl_generator_c
+[3.224s] [ 25%] [34m[1mGenerating C++ type support dispatch for ROS interfaces[0m
+[3.225s] [ 27%] [34m[1mGenerating C++ type support for eProsima Fast-RTPS[0m
+[3.225s] [ 29%] [34m[1mGenerating C type support dispatch for ROS interfaces[0m
+[3.226s] [ 31%] [34m[1mGenerating C introspection for ROS interfaces[0m
+[3.226s] [ 33%] [34m[1mGenerating C type support for eProsima Fast-RTPS[0m
+[3.226s] [ 35%] [34m[1mGenerating C++ introspection for ROS interfaces[0m
+[3.410s] [ 37%] [32mBuilding CXX object CMakeFiles/tamir_interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/tamir_interface/srv/waypoints__type_support.cpp.o[0m
+[3.413s] [ 38%] [32mBuilding CXX object CMakeFiles/tamir_interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/tamir_interface/msg/behaviors__type_support.cpp.o[0m
+[3.413s] [ 40%] [32mBuilding CXX object CMakeFiles/tamir_interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/tamir_interface/msg/behavior_list__type_support.cpp.o[0m
+[3.425s] [ 46%] [32mBuilding CXX object CMakeFiles/tamir_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/tamir_interface/msg/behavior_list__type_support.cpp.o[0m
+[3.425s] [ 46%] [32mBuilding CXX object CMakeFiles/tamir_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/tamir_interface/srv/waypoints__type_support.cpp.o[0m
+[3.425s] [ 46%] [32mBuilding CXX object CMakeFiles/tamir_interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/tamir_interface/msg/behaviors__type_support.cpp.o[0m
+[3.450s] [ 48%] [32mBuilding CXX object CMakeFiles/tamir_interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/tamir_interface/srv/detail/waypoints__type_support.cpp.o[0m
+[3.450s] [ 50%] [32mBuilding CXX object CMakeFiles/tamir_interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/tamir_interface/msg/detail/behavior_list__type_support.cpp.o[0m
+[3.452s] [ 51%] [32mBuilding CXX object CMakeFiles/tamir_interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/tamir_interface/msg/detail/behaviors__type_support.cpp.o[0m
+[3.459s] [ 57%] [32mBuilding C object CMakeFiles/tamir_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/tamir_interface/msg/detail/behavior_list__type_support.c.o[0m
+[3.460s] [ 57%] [32mBuilding C object CMakeFiles/tamir_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/tamir_interface/msg/detail/behaviors__type_support.c.o[0m
+[3.460s] [ 57%] [32mBuilding C object CMakeFiles/tamir_interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/tamir_interface/srv/detail/waypoints__type_support.c.o[0m
+[3.461s] [ 59%] [32m[1mLinking CXX shared library libtamir_interface__rosidl_typesupport_c.so[0m
+[3.499s] [ 59%] Built target tamir_interface__rosidl_typesupport_c
+[3.504s] [ 61%] [32m[1mLinking C shared library libtamir_interface__rosidl_typesupport_introspection_c.so[0m
+[3.511s] [ 62%] [32mBuilding CXX object CMakeFiles/tamir_interface__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/tamir_interface/msg/detail/behaviors__type_support_c.cpp.o[0m
+[3.512s] [ 64%] [32mBuilding CXX object CMakeFiles/tamir_interface__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/tamir_interface/srv/detail/waypoints__type_support_c.cpp.o[0m
+[3.512s] [ 66%] [32mBuilding CXX object CMakeFiles/tamir_interface__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/tamir_interface/msg/detail/behavior_list__type_support_c.cpp.o[0m
+[3.515s] [ 68%] [32mBuilding CXX object CMakeFiles/tamir_interface__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/tamir_interface/msg/detail/dds_fastrtps/behavior_list__type_support.cpp.o[0m
+[3.515s] [ 72%] [32mBuilding CXX object CMakeFiles/tamir_interface__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/tamir_interface/srv/detail/dds_fastrtps/waypoints__type_support.cpp.o[0m
+[3.515s] [ 72%] [32mBuilding CXX object CMakeFiles/tamir_interface__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/tamir_interface/msg/detail/dds_fastrtps/behaviors__type_support.cpp.o[0m
+[3.535s] [ 72%] Built target tamir_interface__rosidl_typesupport_introspection_c
+[3.746s] [ 74%] [32m[1mLinking CXX shared library libtamir_interface__rosidl_typesupport_cpp.so[0m
+[3.774s] [ 75%] [32m[1mLinking CXX shared library libtamir_interface__rosidl_typesupport_introspection_cpp.so[0m
+[3.807s] [ 75%] Built target tamir_interface__rosidl_typesupport_cpp
+[3.830s] [ 75%] Built target tamir_interface__rosidl_typesupport_introspection_cpp
+[3.866s] [ 77%] [32m[1mLinking CXX shared library libtamir_interface__rosidl_typesupport_fastrtps_c.so[0m
+[3.914s] [ 77%] Built target tamir_interface__rosidl_typesupport_fastrtps_c
+[4.029s] [ 79%] [32m[1mLinking CXX shared library libtamir_interface__rosidl_typesupport_fastrtps_cpp.so[0m
+[4.075s] [ 79%] Built target tamir_interface__rosidl_typesupport_fastrtps_cpp
+[4.097s] [ 79%] Built target tamir_interface
+[4.120s] [ 81%] [34m[1mGenerating Python code for ROS interfaces[0m
+[4.401s] [ 81%] Built target tamir_interface__py
+[4.421s] [ 83%] [32mBuilding C object CMakeFiles/tamir_interface__rosidl_generator_py.dir/rosidl_generator_py/tamir_interface/srv/_waypoints_s.c.o[0m
+[4.421s] [ 85%] [32mBuilding C object CMakeFiles/tamir_interface__rosidl_generator_py.dir/rosidl_generator_py/tamir_interface/msg/_behavior_list_s.c.o[0m
+[4.421s] [ 87%] [32mBuilding C object CMakeFiles/tamir_interface__rosidl_generator_py.dir/rosidl_generator_py/tamir_interface/msg/_behaviors_s.c.o[0m
+[4.507s] [ 88%] [32m[1mLinking C shared library libtamir_interface__rosidl_generator_py.so[0m
+[4.549s] [ 88%] Built target tamir_interface__rosidl_generator_py
+[4.569s] [ 90%] [32mBuilding C object CMakeFiles/tamir_interface_s__rosidl_typesupport_introspection_c.dir/rosidl_generator_py/tamir_interface/_tamir_interface_s.ep.rosidl_typesupport_introspection_c.c.o[0m
+[4.571s] [ 92%] [32mBuilding C object CMakeFiles/tamir_interface_s__rosidl_typesupport_fastrtps_c.dir/rosidl_generator_py/tamir_interface/_tamir_interface_s.ep.rosidl_typesupport_fastrtps_c.c.o[0m
+[4.575s] [ 94%] [32mBuilding C object CMakeFiles/tamir_interface_s__rosidl_typesupport_c.dir/rosidl_generator_py/tamir_interface/_tamir_interface_s.ep.rosidl_typesupport_c.c.o[0m
+[4.638s] [ 96%] [32m[1mLinking C shared module rosidl_generator_py/tamir_interface/tamir_interface_s__rosidl_typesupport_introspection_c.so[0m
+[4.640s] [ 98%] [32m[1mLinking C shared module rosidl_generator_py/tamir_interface/tamir_interface_s__rosidl_typesupport_c.so[0m
+[4.641s] [100%] [32m[1mLinking C shared module rosidl_generator_py/tamir_interface/tamir_interface_s__rosidl_typesupport_fastrtps_c.so[0m
+[4.664s] [100%] Built target tamir_interface_s__rosidl_typesupport_introspection_c
+[4.666s] [100%] Built target tamir_interface_s__rosidl_typesupport_c
+[4.669s] [100%] Built target tamir_interface_s__rosidl_typesupport_fastrtps_c
+[4.684s] Invoked command in '/home/asaace00/repo/winter/project/TAMIR/build/tamir_interface' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/asaace00/repo/winter/project/TAMIR/install/tamir:/home/asaace00/repo/winter/project/install/tamir:/opt/ros/jazzy VIRTUAL_ENV_PROMPT=(myenv) /usr/bin/cmake --build /home/asaace00/repo/winter/project/TAMIR/build/tamir_interface -- -j32 -l32
+[4.694s] Invoking command in '/home/asaace00/repo/winter/project/TAMIR/build/tamir_interface': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/asaace00/repo/winter/project/TAMIR/install/tamir:/home/asaace00/repo/winter/project/install/tamir:/opt/ros/jazzy VIRTUAL_ENV_PROMPT=(myenv) /usr/bin/cmake --install /home/asaace00/repo/winter/project/TAMIR/build/tamir_interface
+[4.705s] -- Install configuration: ""
+[4.705s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/ament_index/resource_index/rosidl_interfaces/tamir_interface
+[4.705s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/srv/Waypoints.json
+[4.705s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/msg/Behaviors.json
+[4.705s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/msg/BehaviorList.json
+[4.706s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface
+[4.706s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/srv
+[4.706s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/srv/waypoints.h
+[4.706s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/srv/detail
+[4.706s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/srv/detail/waypoints__type_support.c
+[4.706s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/srv/detail/waypoints__description.c
+[4.706s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/srv/detail/waypoints__type_support.h
+[4.706s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/srv/detail/waypoints__struct.h
+[4.706s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/srv/detail/waypoints__functions.h
+[4.706s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/srv/detail/waypoints__functions.c
+[4.707s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg
+[4.707s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/behavior_list.h
+[4.707s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/behaviors.h
+[4.707s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/rosidl_generator_c__visibility_control.h
+[4.707s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail
+[4.707s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behavior_list__description.c
+[4.707s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behavior_list__type_support.h
+[4.707s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behaviors__functions.h
+[4.707s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behaviors__type_support.h
+[4.707s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behaviors__description.c
+[4.707s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behaviors__functions.c
+[4.707s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behavior_list__functions.h
+[4.708s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behaviors__type_support.c
+[4.708s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behaviors__struct.h
+[4.708s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behavior_list__type_support.c
+[4.708s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behavior_list__struct.h
+[4.708s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behavior_list__functions.c
+[4.708s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/environment/library_path.sh
+[4.708s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/environment/library_path.dsv
+[4.708s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/libtamir_interface__rosidl_generator_c.so
+[4.708s] -- Set non-toolchain portion of runtime path of "/home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/libtamir_interface__rosidl_generator_c.so" to ""
+[4.708s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface
+[4.708s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/srv
+[4.708s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/srv/detail
+[4.708s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/srv/detail/waypoints__rosidl_typesupport_fastrtps_c.h
+[4.709s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg
+[4.709s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[4.709s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail
+[4.709s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behaviors__rosidl_typesupport_fastrtps_c.h
+[4.709s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behavior_list__rosidl_typesupport_fastrtps_c.h
+[4.709s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/libtamir_interface__rosidl_typesupport_fastrtps_c.so
+[4.709s] -- Set non-toolchain portion of runtime path of "/home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/libtamir_interface__rosidl_typesupport_fastrtps_c.so" to ""
+[4.709s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface
+[4.709s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/srv
+[4.709s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/srv/detail
+[4.709s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/srv/detail/waypoints__type_support.c
+[4.709s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/srv/detail/waypoints__rosidl_typesupport_introspection_c.h
+[4.709s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg
+[4.710s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[4.710s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail
+[4.710s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behaviors__rosidl_typesupport_introspection_c.h
+[4.710s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behavior_list__rosidl_typesupport_introspection_c.h
+[4.710s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behaviors__type_support.c
+[4.710s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behavior_list__type_support.c
+[4.710s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/libtamir_interface__rosidl_typesupport_introspection_c.so
+[4.710s] -- Set non-toolchain portion of runtime path of "/home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/libtamir_interface__rosidl_typesupport_introspection_c.so" to ""
+[4.710s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/libtamir_interface__rosidl_typesupport_c.so
+[4.710s] -- Set non-toolchain portion of runtime path of "/home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/libtamir_interface__rosidl_typesupport_c.so" to ""
+[4.710s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface
+[4.710s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/srv
+[4.711s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/srv/waypoints.hpp
+[4.711s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/srv/detail
+[4.711s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/srv/detail/waypoints__builder.hpp
+[4.711s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/srv/detail/waypoints__struct.hpp
+[4.711s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/srv/detail/waypoints__traits.hpp
+[4.711s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/srv/detail/waypoints__type_support.hpp
+[4.711s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg
+[4.711s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/behavior_list.hpp
+[4.711s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/rosidl_generator_cpp__visibility_control.hpp
+[4.711s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/behaviors.hpp
+[4.711s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail
+[4.711s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behavior_list__type_support.hpp
+[4.711s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behaviors__struct.hpp
+[4.711s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behaviors__traits.hpp
+[4.712s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behavior_list__traits.hpp
+[4.712s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behavior_list__struct.hpp
+[4.712s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behaviors__type_support.hpp
+[4.712s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behaviors__builder.hpp
+[4.712s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behavior_list__builder.hpp
+[4.712s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface
+[4.712s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/srv
+[4.712s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/srv/detail
+[4.712s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/srv/detail/dds_fastrtps
+[4.712s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/srv/detail/waypoints__rosidl_typesupport_fastrtps_cpp.hpp
+[4.712s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg
+[4.712s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[4.712s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail
+[4.712s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behaviors__rosidl_typesupport_fastrtps_cpp.hpp
+[4.713s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behavior_list__rosidl_typesupport_fastrtps_cpp.hpp
+[4.713s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/dds_fastrtps
+[4.713s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/libtamir_interface__rosidl_typesupport_fastrtps_cpp.so
+[4.713s] -- Set non-toolchain portion of runtime path of "/home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/libtamir_interface__rosidl_typesupport_fastrtps_cpp.so" to ""
+[4.713s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface
+[4.713s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/srv
+[4.713s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/srv/detail
+[4.713s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/srv/detail/waypoints__type_support.cpp
+[4.713s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/srv/detail/waypoints__rosidl_typesupport_introspection_cpp.hpp
+[4.713s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg
+[4.713s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail
+[4.713s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behaviors__type_support.cpp
+[4.713s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behavior_list__type_support.cpp
+[4.713s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behavior_list__rosidl_typesupport_introspection_cpp.hpp
+[4.713s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/include/tamir_interface/tamir_interface/msg/detail/behaviors__rosidl_typesupport_introspection_cpp.hpp
+[4.713s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/libtamir_interface__rosidl_typesupport_introspection_cpp.so
+[4.714s] -- Set non-toolchain portion of runtime path of "/home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/libtamir_interface__rosidl_typesupport_introspection_cpp.so" to ""
+[4.714s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/libtamir_interface__rosidl_typesupport_cpp.so
+[4.714s] -- Set non-toolchain portion of runtime path of "/home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/libtamir_interface__rosidl_typesupport_cpp.so" to ""
+[4.714s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/environment/pythonpath.sh
+[4.714s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/environment/pythonpath.dsv
+[4.714s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface-0.0.0-py3.12.egg-info
+[4.714s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface-0.0.0-py3.12.egg-info/dependency_links.txt
+[4.714s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface-0.0.0-py3.12.egg-info/top_level.txt
+[4.714s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface-0.0.0-py3.12.egg-info/SOURCES.txt
+[4.714s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface-0.0.0-py3.12.egg-info/PKG-INFO
+[4.714s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface
+[4.714s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface/srv
+[4.714s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface/srv/_waypoints_s.c
+[4.714s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface/srv/__init__.py
+[4.714s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface/srv/_waypoints.py
+[4.714s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface/_tamir_interface_s.ep.rosidl_typesupport_introspection_c.c
+[4.715s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface/msg
+[4.715s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface/msg/_behaviors.py
+[4.715s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface/msg/_behavior_list.py
+[4.715s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface/msg/_behavior_list_s.c
+[4.715s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface/msg/__init__.py
+[4.715s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface/msg/_behaviors_s.c
+[4.715s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface/_tamir_interface_s.ep.rosidl_typesupport_c.c
+[4.715s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface/tamir_interface_s__rosidl_typesupport_fastrtps_c.so
+[4.715s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface/_tamir_interface_s.ep.rosidl_typesupport_fastrtps_c.c
+[4.715s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface/tamir_interface_s__rosidl_typesupport_c.so
+[4.715s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface/__init__.py
+[4.715s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface/tamir_interface_s__rosidl_typesupport_introspection_c.so
+[4.749s] Listing '/home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface'...
+[4.749s] Compiling '/home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface/__init__.py'...
+[4.749s] Listing '/home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface/msg'...
+[4.749s] Compiling '/home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface/msg/__init__.py'...
+[4.749s] Compiling '/home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface/msg/_behavior_list.py'...
+[4.749s] Compiling '/home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface/msg/_behaviors.py'...
+[4.749s] Listing '/home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface/srv'...
+[4.749s] Compiling '/home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface/srv/__init__.py'...
+[4.749s] Compiling '/home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface/srv/_waypoints.py'...
+[4.752s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface/tamir_interface_s__rosidl_typesupport_fastrtps_c.so
+[4.752s] -- Set non-toolchain portion of runtime path of "/home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface/tamir_interface_s__rosidl_typesupport_fastrtps_c.so" to ""
+[4.752s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface/tamir_interface_s__rosidl_typesupport_introspection_c.so
+[4.752s] -- Set non-toolchain portion of runtime path of "/home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface/tamir_interface_s__rosidl_typesupport_introspection_c.so" to ""
+[4.752s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface/tamir_interface_s__rosidl_typesupport_c.so
+[4.752s] -- Set non-toolchain portion of runtime path of "/home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/python3.12/site-packages/tamir_interface/tamir_interface_s__rosidl_typesupport_c.so" to ""
+[4.752s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/libtamir_interface__rosidl_generator_py.so
+[4.752s] -- Set non-toolchain portion of runtime path of "/home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/lib/libtamir_interface__rosidl_generator_py.so" to ""
+[4.752s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/srv/Waypoints.idl
+[4.752s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/msg/Behaviors.idl
+[4.752s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/msg/BehaviorList.idl
+[4.752s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/srv/Waypoints.srv
+[4.752s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/msg/Behaviors.msg
+[4.752s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/msg/BehaviorList.msg
+[4.752s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/msg
+[4.752s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/msg/BehaviorList.msg
+[4.752s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/msg/Behaviors.msg
+[4.752s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/srv
+[4.752s] -- Up-to-date: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/srv/Waypoints.srv
+[4.752s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/ament_index/resource_index/package_run_dependencies/tamir_interface
+[4.752s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/ament_index/resource_index/parent_prefix_path/tamir_interface
+[4.752s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/environment/ament_prefix_path.sh
+[4.752s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/environment/ament_prefix_path.dsv
+[4.753s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/environment/path.sh
+[4.753s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/environment/path.dsv
+[4.753s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/local_setup.bash
+[4.753s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/local_setup.sh
+[4.753s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/local_setup.zsh
+[4.753s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/local_setup.dsv
+[4.753s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/package.dsv
+[4.753s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/ament_index/resource_index/packages/tamir_interface
+[4.753s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/cmake/export_tamir_interface__rosidl_generator_cExport.cmake
+[4.753s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/cmake/export_tamir_interface__rosidl_generator_cExport-noconfig.cmake
+[4.753s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/cmake/export_tamir_interface__rosidl_typesupport_fastrtps_cExport.cmake
+[4.753s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/cmake/export_tamir_interface__rosidl_typesupport_fastrtps_cExport-noconfig.cmake
+[4.753s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/cmake/tamir_interface__rosidl_typesupport_introspection_cExport.cmake
+[4.753s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/cmake/tamir_interface__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[4.753s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/cmake/tamir_interface__rosidl_typesupport_cExport.cmake
+[4.753s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/cmake/tamir_interface__rosidl_typesupport_cExport-noconfig.cmake
+[4.753s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/cmake/export_tamir_interface__rosidl_generator_cppExport.cmake
+[4.753s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/cmake/export_tamir_interface__rosidl_typesupport_fastrtps_cppExport.cmake
+[4.753s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/cmake/export_tamir_interface__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake
+[4.753s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/cmake/tamir_interface__rosidl_typesupport_introspection_cppExport.cmake
+[4.753s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/cmake/tamir_interface__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[4.753s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/cmake/tamir_interface__rosidl_typesupport_cppExport.cmake
+[4.753s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/cmake/tamir_interface__rosidl_typesupport_cppExport-noconfig.cmake
+[4.753s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/cmake/export_tamir_interface__rosidl_generator_pyExport.cmake
+[4.753s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/cmake/export_tamir_interface__rosidl_generator_pyExport-noconfig.cmake
+[4.753s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/cmake/rosidl_cmake-extras.cmake
+[4.753s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/cmake/ament_cmake_export_dependencies-extras.cmake
+[4.753s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/cmake/ament_cmake_export_include_directories-extras.cmake
+[4.753s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/cmake/ament_cmake_export_libraries-extras.cmake
+[4.753s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/cmake/ament_cmake_export_targets-extras.cmake
+[4.754s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[4.754s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[4.754s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/cmake/tamir_interfaceConfig.cmake
+[4.754s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/cmake/tamir_interfaceConfig-version.cmake
+[4.754s] -- Installing: /home/asaace00/repo/winter/project/TAMIR/install/tamir_interface/share/tamir_interface/package.xml
+[4.755s] Invoked command in '/home/asaace00/repo/winter/project/TAMIR/build/tamir_interface' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/asaace00/repo/winter/project/TAMIR/install/tamir:/home/asaace00/repo/winter/project/install/tamir:/opt/ros/jazzy VIRTUAL_ENV_PROMPT=(myenv) /usr/bin/cmake --install /home/asaace00/repo/winter/project/TAMIR/build/tamir_interface

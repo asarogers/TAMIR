@@ -1,0 +1,5 @@
+[console_scripts]
+camera_localizer = tamir.camera_localizer:main
+music_node = tamir.playmusic:main
+tamir_interface = tamir.tamir_interface:main
+vision = tamir.vision:main
