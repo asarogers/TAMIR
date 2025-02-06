@@ -4,10 +4,10 @@
 
 #include <string.h>
 
-#include "tamir_interface/srv/detail/waypoints__type_support.h"
-#include "tamir_interface/srv/detail/waypoints__struct.h"
-#include "tamir_interface/srv/detail/waypoints__functions.h"
 #include "rosidl_typesupport_interface/macros.h"
+#include "tamir_interface/srv/detail/waypoints__struct.h"
+#include "tamir_interface/srv/detail/waypoints__type_support.h"
+#include "tamir_interface/srv/detail/waypoints__functions.h"
 
 #ifdef __cplusplus
 extern "C"

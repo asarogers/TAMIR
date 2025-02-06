@@ -4,10 +4,10 @@
 
 #include <string.h>
 
+#include "rosidl_typesupport_interface/macros.h"
 #include "tamir_interface/msg/detail/behavior_list__type_support.h"
 #include "tamir_interface/msg/detail/behavior_list__functions.h"
 #include "tamir_interface/msg/detail/behavior_list__struct.h"
-#include "rosidl_typesupport_interface/macros.h"
 
 #ifdef __cplusplus
 extern "C"

@@ -22,7 +22,6 @@ tamir/__init__.py
 tamir/camera_localizer.py
 tamir/playmusic.py
 tamir/tamir_interface.py
-tamir/transform_auditor.py
 tamir/vision.py
 test/test_copyright.py
 test/test_flake8.py

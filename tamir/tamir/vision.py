@@ -122,7 +122,7 @@ class YoloVisualizer(Node):
             if door_x_min <= x <= door_x_max:
                 self.logger("Dog is in bathroom")
                 # self.logger(f"3D Coords of {class_name}: x={x:.3f}")
-                self.behavior["dogIsInBathroom"] = True
+                # self.behavior["dogIsInBathroom"] = True
         elif z < self.door_z:
             self.behavior["dogIsInBathroom"] = False
 
@@ -161,8 +161,7 @@ class YoloVisualizer(Node):
                     if self.target_detection and self.target_centre is not None:
 
                         # draw a circle where the apriltag is detected
-                        cv2.circle(current_frame, self.target_centre, 10, (0, 255, 0), -1)
-                        self.logger(f"target center = {self.target_centre}")
+                        # cv2.circle(current_frame, self.target_centre, 10, (0, 255, 0), -1)
                         target_depth = self.depth_image[self.target_centre]
                         # only continue if there is some depth
                         if target_depth > 0:
@@ -170,23 +169,10 @@ class YoloVisualizer(Node):
                             target_x =target_x/1000
                             target_y = target_y /1000
                             target_z = target_z / 1000
-                            self.logger(f"depth target center = {target_x}, {target_y}, {target_z}")
-
-                            t = geometry_msgs.msg.TransformStamped()
-                            t.header.stamp = self.get_clock().now().to_msg()
-                            t.header.frame_id = "camera_link"
-                            t.child_frame_id = f"right_door_frame"
-
-                            t.transform.translation.x = target_x
-                            t.transform.translation.y = target_y
-                            t.transform.translation.z = target_z
-
-                            t.transform.rotation.x = 0.0
-                            t.transform.rotation.y = 0.0
-                            t.transform.rotation.z = 0.0
-                            t.transform.rotation.w = 1.0  # No rotation
-
-                            self.tf_broadcaster.sendTransform(t)
+                            # self.logger(f"target center = {self.target_centre}")
+                            # self.logger(f"depth target center = {target_x}, {target_y}, {target_z}")
+                            self.sendToRviz("right_door_frame", target_x, target_y, target_z)
+                            
                     
                     if class_name in self.valid_names:
                         # Draw bounding box and label
@@ -201,16 +187,17 @@ class YoloVisualizer(Node):
                             2
                         )
 
-                    center_x = int((x1 + x2) / 2)
-                    center_y = int((y1 + y2) / 2)
-                    depth_value = self.depth_image[center_y, center_x]
+                        center_x = int((x1 + x2) / 2)
+                        center_y = int((y1 + y2) / 2)
+                        depth_value = self.depth_image[center_y, center_x]
 
-                    if depth_value > 0:
-                        x, y, z = self.pixel_to_3d(center_x, center_y, depth_value)
-                        x = x /1000
-                        y = y /1000
-                        z = z /1000
-                        self.checkBehavior(class_name, x, y, z)
+                        if depth_value > 0:
+                            x, y, z = self.pixel_to_3d(center_x, center_y, depth_value)
+                            x = x /1000
+                            y = y /1000
+                            z = z /1000
+                            self.checkBehavior(class_name, x, y, z)
+                            self.sendToRviz(f"{class_name}_frame", x, y, z)
                             
             #         elif  self.depth_image is None:
             #             self.logger("No depth image")
@@ -235,6 +222,23 @@ class YoloVisualizer(Node):
         # Display the result
         cv2.imshow('YOLO Detections with Depth', current_frame)
         cv2.waitKey(1)
+
+    def sendToRviz(self, name, x, y, z):
+        t = geometry_msgs.msg.TransformStamped()
+        t.header.stamp = self.get_clock().now().to_msg()
+        t.header.frame_id = "world"
+        t.child_frame_id = name
+
+        t.transform.translation.x = x
+        t.transform.translation.y = y
+        t.transform.translation.z = z - 2.0
+
+        t.transform.rotation.x = 0.0
+        t.transform.rotation.y = 0.0
+        t.transform.rotation.z = 0.0
+        t.transform.rotation.w = 1.0  # No rotation
+
+        self.tf_broadcaster.sendTransform(t)
 
     def pixel_to_3d(self, pixel_x, pixel_y, depth):
         """Convert pixel coordinates and depth to 3D coordinates."""

@@ -3,7 +3,8 @@ Panels:
     Help Height: 70
     Name: Displays
     Property Tree Widget:
-      Expanded: ~
+      Expanded:
+        - /Global Options1
       Splitter Ratio: 0.5
     Tree Height: 234
   - Class: rviz_common/Selection
@@ -52,8 +53,6 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: false
-        base:
-          Value: true
         camera_color_frame:
           Value: false
         camera_color_optical_frame:
@@ -64,39 +63,15 @@ Visualization Manager:
           Value: false
         camera_link:
           Value: true
-        fer_hand:
-          Value: false
-        fer_hand_tcp:
+        dog_frame:
           Value: true
-        fer_leftfinger:
-          Value: false
-        fer_link0:
-          Value: false
-        fer_link1:
-          Value: false
-        fer_link2:
-          Value: false
-        fer_link3:
-          Value: false
-        fer_link4:
-          Value: false
-        fer_link5:
-          Value: false
-        fer_link6:
-          Value: false
-        fer_link7:
-          Value: false
-        fer_link8:
-          Value: false
-        fer_rightfinger:
-          Value: false
-        lever:
+        left_door_frame:
           Value: true
-        loaf_tray:
+        rightDoorFrame:
           Value: true
-        plate:
+        right_door_frame:
           Value: true
-        doorbase:
+        world:
           Value: true
       Marker Scale: 1
       Name: TF
@@ -104,36 +79,20 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
-        camera_link:
-          camera_color_frame:
-            camera_color_optical_frame:
-              lever:
+        world:
+          camera_link:
+            camera_color_frame:
+              camera_color_optical_frame:
+                rightDoorFrame:
+                  {}
+            camera_depth_frame:
+              camera_depth_optical_frame:
                 {}
-              loaf_tray:
-                {}
-              plate:
-                {}
-          camera_depth_frame:
-            camera_depth_optical_frame:
+          dog_frame:
+            {}
+          right_door_frame:
+            left_door_frame:
               {}
-        doorbase:
-          base:
-            fer_link0:
-              fer_link1:
-                fer_link2:
-                  fer_link3:
-                    fer_link4:
-                      fer_link5:
-                        fer_link6:
-                          fer_link7:
-                            fer_link8:
-                              fer_hand:
-                                fer_hand_tcp:
-                                  {}
-                                fer_leftfinger:
-                                  {}
-                                fer_rightfinger:
-                                  {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -154,73 +113,6 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        base:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        fer_hand:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        fer_hand_tcp:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        fer_leftfinger:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        fer_link0:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        fer_link1:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        fer_link2:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        fer_link3:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        fer_link4:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        fer_link5:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        fer_link6:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        fer_link7:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        fer_link8:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        fer_rightfinger:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
       Mass Properties:
         Inertia: false
         Mass: false
@@ -251,7 +143,7 @@ Visualization Manager:
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: base
+    Fixed Frame: world
     Frame Rate: 30
   Name: root
   Tools:
@@ -294,25 +186,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 4.084321022033691
+      Distance: 3.4993813037872314
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.12013290077447891
-        Y: 0.0663825124502182
-        Z: 0.24214723706245422
+        X: -0.5106388926506042
+        Y: -3.6980934143066406
+        Z: 0.8435222506523132
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.1703983098268509
+      Pitch: 0.49539852142333984
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 5.818577766418457
+      Yaw: 4.783565521240234
     Saved: ~
 Window Geometry:
   Camera:

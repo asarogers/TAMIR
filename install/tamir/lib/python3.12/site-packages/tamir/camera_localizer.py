@@ -26,16 +26,35 @@ class CameraLocalizer(Node):
         # Broadcast the transformation from doorbase -> BaseTag
         doorbase_tag = TransformStamped()
         doorbase_tag.header.stamp = self.get_clock().now().to_msg()
-        doorbase_tag.header.frame_id = 'rightDoorFrame'  # TODO: Parameterize the frame ids
-        doorbase_tag.child_frame_id = 'base'
-        doorbase_tag.transform.translation.x = 0.156
-        doorbase_tag.transform.translation.y = -0.085
-        doorbase_tag.transform.translation.z = -0.009
+        doorbase_tag.header.frame_id = 'right_door_frame'  # TODO: Parameterize the frame ids
+        doorbase_tag.child_frame_id = 'left_door_frame'
+        doorbase_tag.transform.translation.x = 0.0
+        doorbase_tag.transform.translation.y = 1.0
+        doorbase_tag.transform.translation.z = 0.0
         euler_rotation = (-math.pi / 2.0, -math.pi / 2.0, 0.0)  # RPY
         quaternion = self.euler_to_quaternion(*euler_rotation)
         doorbase_tag.transform.rotation = quaternion
         self.static_broadcaster.sendTransform(doorbase_tag)
         self.get_logger().info('CameraLocalizer Published doorbase -> BaseTag')
+
+        world_to_camera = TransformStamped()
+        world_to_camera.header.stamp = self.get_clock().now().to_msg()
+        world_to_camera.header.frame_id = 'world'
+        world_to_camera.child_frame_id = 'camera_link'
+        
+        # Position the camera in the world frame (adjust these values as needed)
+        world_to_camera.transform.translation.x = 2.9972
+        world_to_camera.transform.translation.y = 0.0
+        world_to_camera.transform.translation.z = 2.0  # Camera height from ground
+        
+        # Orient camera (assuming camera is looking forward along x-axis)
+        camera_quaternion = self.euler_to_quaternion(0.0, 0.0, 0.0)
+        world_to_camera.transform.rotation = camera_quaternion
+        
+        # Send the transform
+        self.static_broadcaster.sendTransform(world_to_camera)
+        
+        # Log success
 
     def euler_to_quaternion(self, roll: float, pitch: float, yaw: float) -> Quaternion:
         """
