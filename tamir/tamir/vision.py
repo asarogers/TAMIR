@@ -77,6 +77,7 @@ class YoloVisualizer(Node):
         self.target_detection = False
         self.target_centre = None
         self.counter = 0
+        self.door_coord = None
 
         self.behaviorPublisher = self.create_publisher(BehaviorList, "behavior_msg", 10)
         self.detection_sub = self.create_subscription(AprilTagDetectionArray, 'detections',
@@ -110,21 +111,20 @@ class YoloVisualizer(Node):
             self.target_centre = None
 
     def checkBehavior(self,class_name, x, y, z):
-        # self.logger(f"3D Coordinates of {class_name}: x={x:.3f}, y={y:.3f}, z={z:.3f}")
-        # self.logger(f"3D Coords of {class_name}: x={x:.3f}")
-        if z >= self.door_z:
-        #     self.logger("passed by z")
-        #     self.logger(f"3D Coords of {class_name}: x={x:.3f}")
-            door_x_min = self.door_x - (self.door_width / 2)
-            door_x_max = self.door_x + (self.door_width / 2)
-            # self.logger(f"{class_name}:  {door_x_min} < {x:.3f} <= {door_x_max}")
+        if self.door_coord:
+            offset = 0.4
+            # self.logger(f"dog = {round(x, 4)} | door x = {self.door_coord["x"]} {self.door_coord["y1"]}")
+            if self.door_coord["x1"]- offset < x <= (self.door_coord["x2"]):
+                # self.logger("Dog is between")
+                # self.logger(f"{self.door_coord["x1"]-offset} < {round(x, 4)} < {self.door_coord["x2"]}")
+                # self.logger(f"dog = {y}")
 
-            if door_x_min <= x <= door_x_max:
-                self.logger("Dog is in bathroom")
-                # self.logger(f"3D Coords of {class_name}: x={x:.3f}")
-                # self.behavior["dogIsInBathroom"] = True
-        elif z < self.door_z:
-            self.behavior["dogIsInBathroom"] = False
+                if y < 0.4:
+                    self.behavior["dogIsInBathroom"] = True
+                    self.logger("Dog is in bathroom")
+                else:
+                    self.behavior["dogIsInBathroom"] = False
+
 
 
     def camera_info_callback(self, camera_info_msg):
@@ -166,11 +166,17 @@ class YoloVisualizer(Node):
                         # only continue if there is some depth
                         if target_depth > 0:
                             target_x, target_y, target_z = self.pixel_to_3d(self.target_centre[0], self.target_centre[1], target_depth)
-                            target_x =target_x/1000
+                            target_x = target_x/1000
                             target_y = target_y /1000
                             target_z = target_z / 1000
+                            self.door_coord = {
+                                "x1" : round(target_x, 4),
+                                "y" : round(target_y, 4),
+                                "x2" : round(target_x + 0.5, 4),
+                                "z" : round(target_z, 4),
+                            }
                             # self.logger(f"target center = {self.target_centre}")
-                            # self.logger(f"depth target center = {target_x}, {target_y}, {target_z}")
+                            # self.logger(f"{self.door_coord}")
                             self.sendToRviz("right_door_frame", target_x, target_y, target_z)
                             
                     
@@ -198,15 +204,8 @@ class YoloVisualizer(Node):
                             z = z /1000
                             self.checkBehavior(class_name, x, y, z)
                             self.sendToRviz(f"{class_name}_frame", x, y, z)
+
                             
-            #         elif  self.depth_image is None:
-            #             self.logger("No depth image")
-            #         elif self.camera_info is  None:
-            #             self.logger("No camera info")
-            #         else:
-            #             self.logger("A different error")
-            # if self.behavior["dogIsInBathroom"]:
-            #     self.logger("****Dog found in bathroom")
             msg = BehaviorList()
 
             behavior = Behaviors()
