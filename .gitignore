@@ -1,3 +1,10 @@
 test_image87.jpgmyenv
-yolo11n.pt
+**/yolo11n.pt
 tamir/myenv/
+rosbot_2r/rosbot/myenv
+# Ignore all install, build, and log-related directories
+**/install/
+**/build*/
+**/log*/
+**/myenv/
+**/testenv/
