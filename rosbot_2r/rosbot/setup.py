@@ -9,7 +9,7 @@ setup(
     data_files=[
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
-        ('share/' + package_name, ['package.xml', 'launch/image_recognition_laptop.py']),
+        ('share/' + package_name, ['package.xml', 'launch/image_recognition_laptop.py',  'config/tags.yaml',]),
     ],
     install_requires=['setuptools'],
     zip_safe=True,

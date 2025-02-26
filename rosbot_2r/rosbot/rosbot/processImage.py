@@ -2,51 +2,51 @@
 import rclpy
 from rclpy.node import Node
 from rclpy.qos import QoSProfile, QoSReliabilityPolicy, QoSHistoryPolicy
-from sensor_msgs.msg import Image
+from sensor_msgs.msg import Image, CompressedImage
 from cv_bridge import CvBridge
 import cv2
 
 class ProcessDepthNode(Node):
     def __init__(self):
-        super().__init__('image_node')
+        super().__init__('publisher_node')
         # Initialize CV bridge
         self.bridge = CvBridge()
         
         # Create a QoS profile for reliable communication
-        depth_qos = QoSProfile(
-            reliability=QoSReliabilityPolicy.RELIABLE,  # Use RELIABLE for both publisher and subscriber
+        qos = QoSProfile(
+            reliability=QoSReliabilityPolicy.RELIABLE,
             history=QoSHistoryPolicy.KEEP_LAST,
             depth=1)
         
         # Subscribe to regular image data (not compressed) with reliable QoS
-        self.subscription = self.create_subscription(
-            Image,
-            '/camera/color/image_raw',
-            self.depth_callback,
-            qos_profile=depth_qos)
+        self.create_subscription(CompressedImage, '/camera/color/image_raw/compressed', self.compressed_image_callback, qos)
         
         # Publisher for processed image
         self.image_publisher = self.create_publisher(
             Image,
             '/processed/color/image',
-            qos_profile=depth_qos)
+            qos_profile=qos)
+        
+        self.latest_img = None
+        self.processing = False
             
         self.get_logger().info('Image processing node started')
         
-    def depth_callback(self, data):
-        """Callback to process and publish the image."""
+    def compressed_image_callback(self, msg):
+        if self.processing:
+            # skip if still processing image
+            return
         try:
-            # Convert the received ROS Image message to OpenCV format
-            cv_image = self.bridge.imgmsg_to_cv2(data, desired_encoding='bgr8')
+            self.processing = True
+            # Quickly store the latest color image
+            cv_img = self.bridge.compressed_imgmsg_to_cv2(msg, desired_encoding='bgr8')
 
-            # Example processing step: Convert the image to grayscale
-            processed_image = cv2.cvtColor(cv_image, cv2.COLOR_BGR2GRAY)
+            ros_img = self.bridge.cv2_to_imgmsg(cv_img, encoding='bgr8')
+            ros_img.header = msg.header  # Preserve original timestamp
 
-            # Convert the processed OpenCV image back to a ROS Image message
-            processed_msg = self.bridge.cv2_to_imgmsg(processed_image, encoding='mono8')
-
-            # Publish the processed image using the standard Image message
-            self.image_publisher.publish(processed_msg)
+            self.image_publisher.publish(ros_img)
+        except Exception as e:
+            self.get_logger().error(f'Error converting compressed image: {str(e)}')
 
         except Exception as e:
             self.get_logger().error(f'Error processing image: {str(e)}')
