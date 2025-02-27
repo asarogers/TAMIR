@@ -12,6 +12,7 @@ from rclpy.qos import QoSProfile, QoSReliabilityPolicy, QoSHistoryPolicy
 from apriltag_msgs.msg import AprilTagDetectionArray
 from sensor_msgs.msg import PointCloud2
 import sensor_msgs_py.point_cloud2 as pc2  # Import ROS2 point cloud processing
+from tamir_interface.msg import Behaviors, BehaviorList
 
 class OptimizedTrackerNode(Node):
     def __init__(self):
@@ -45,6 +46,10 @@ class OptimizedTrackerNode(Node):
 
         self.detection_sub = self.create_subscription(AprilTagDetectionArray, 'detections',
                                                       self.detection_callback, 10)
+        
+        self.behavior= {
+            "dogIsInBathroom" : False
+        }
 
         # Flags and variables for inference
         self.model = None
@@ -52,6 +57,7 @@ class OptimizedTrackerNode(Node):
         self.model_loaded = threading.Event()
         self.last_inference_time = time.time()
         self.fps = 0
+
 
         # Start the inference thread (daemon so it stops on shutdown)
         self.inference_thread = threading.Thread(target=self.inference_loop, daemon=True)
@@ -61,6 +67,10 @@ class OptimizedTrackerNode(Node):
         self.get_logger().info('Loading YOLO model...')
         self.model_thread = threading.Thread(target=self.load_model, daemon=True)
         self.model_thread.start()
+
+        self.behaviorPublisher = self.create_publisher(BehaviorList, "behavior_msg", 10)
+
+        self.wall_coord = None
 
 
     def pointcloud_callback(self, msg):
@@ -252,12 +262,13 @@ class OptimizedTrackerNode(Node):
             if self.target_detection and self.target_centre:
                 x, y = self.target_centre
                 target_x, target_y, target_z = self.cloud_to_3d(x, y)
-
                 if target_x is not None:
-                    self.get_logger().info(f"AprilTag 3D Position: X={target_x:.2f}, Y={-target_y:.2f}, Z={target_z:.2f} meters")
-
-
-
+                    self.wall_coord = {
+                                "x" : round(target_x, 4),
+                                "y" : round(target_y, 4),
+                                "z" : round(target_z, 4),
+                            }
+                    
             # Process detections if any
             if results and len(results) > 0:
                 detections = results[0].boxes
@@ -270,9 +281,6 @@ class OptimizedTrackerNode(Node):
                     conf = float(box.conf[0])
                     cls_id = int(box.cls[0])
                     class_name = self.model.names.get(cls_id, f'class_{cls_id}')
-                    
-
-
 
                     if class_name in self.valid_names:
                         cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255, 0), 2)
@@ -282,36 +290,34 @@ class OptimizedTrackerNode(Node):
                         center_x = int((x1 + x2) / 2)
                         center_y = int((y1 + y2) / 2)
                         if 0 <= center_x and 0 <= center_y:
-                            x3d, y3d, z3d = self.cloud_to_3d(center_x, center_y)
+                            dogx, dogy, dogz = self.cloud_to_3d(center_x, center_y)
 
-                            if x3d is not None:
-                                self.get_logger().info(f"X:{x3d:.2f} Y:{y3d:.2f} Z:{z3d:.2f}m")
+                            if dogx is not None:
+                                if self.wall_coord:
+                                    self.get_logger().info(f"apriltag position: {self.wall_coord["x"]}, {self.wall_coord["y"]}, {self.wall_coord["z"]}")
+                                self.get_logger().info(f"X:{dogx:.2f} Y:{dogy:.2f} Z:{dogz:.2f}m")
+                                if self.wall_coord['z'] <= dogz +.40:
+                                    self.behavior["dogIsInBathroom"] = True
+                                    self.get_logger().info("Dog is in bathroom")
+                                else:
+                                    self.behavior["dogIsInBathroom"] = False
+            msg = BehaviorList()
 
-                                    # cv2.putText(img, f"X:{x3d:.2f} Y:{y3d:.2f} Z:{z3d:.2f}m",
-                                    #             (x1, y2 + 20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2)
+            behavior = Behaviors()
+            behavior.name = "dogIsInBathroom"
+            behavior.state = self.behavior["dogIsInBathroom"]
+
+            msg.states = [behavior]
+
 
             # Overlay performance metrics and depth status
-            depth_status = "Depth: Available" if self.depth_image is not None else "Depth: Not Available"
-            cv2.putText(img, f"FPS: {self.fps:.1f} | {depth_status}", (10, 30),
+            cv2.putText(img, f"FPS: {self.fps:.1f}", (10, 30),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
 
             # Show the result
             cv2.imshow('Optimized Tracker', img)
             key = cv2.waitKey(1) & 0xFF
 
-            # Allow dynamic adjustments via keypresses
-            if key in [ord('+'), ord('=')]:
-                self.processing_scale = min(1.0, self.processing_scale + 0.1)
-                self.get_logger().info(f'Processing scale increased to {self.processing_scale:.1f}')
-            elif key == ord('-'):
-                self.processing_scale = max(0.2, self.processing_scale - 0.1)
-                self.get_logger().info(f'Processing scale decreased to {self.processing_scale:.1f}')
-            elif key == ord('s'):
-                self.skip_frames = max(1, (self.skip_frames % 5) + 1)
-                self.get_logger().info(f'Processing every {self.skip_frames} frames')
-
-            # Brief sleep to yield CPU
-            time.sleep(0.001)
 
 def main(args=None):
     rclpy.init(args=args)

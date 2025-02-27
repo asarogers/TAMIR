@@ -12,6 +12,7 @@ setup(
         ('share/' + package_name, [
             'package.xml',
              'config/tags.yaml',
+             'launch/image_recognition_laptop.py',
             'launch/startup.launch.py',
             'launch/playmusic.launch.py',
             'sound/535_Silent.mp3',
@@ -34,7 +35,10 @@ setup(
             'camera_localizer = tamir.camera_localizer:main',
             'tamir_interface = tamir.tamir_interface:main',
             'music_node = tamir.playmusic:main',
-            'vision = tamir.vision:main'
+            'vision = tamir.vision:main',
+            "tracker = tamir.tracker:main",
+            "depth_node = tamir.processDepth:main",
+            "image_node = tamir.processImage:main",
         ],
     },
 )

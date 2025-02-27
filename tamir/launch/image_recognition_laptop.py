@@ -6,7 +6,7 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
     return LaunchDescription([
         Node(
-            package='rosbot',
+            package='tamir',
             executable='tracker',
             name='tracker_node',
             output='screen',
@@ -31,7 +31,7 @@ def generate_launch_description():
             ],
             parameters=[
                 PathJoinSubstitution(
-                    [FindPackageShare('rosbot'), 'tags.yaml']),
+                    [FindPackageShare('tamir'), 'tags.yaml']),
             ],
             arguments=['--ros-args', '--log-level', 'error']
         ),

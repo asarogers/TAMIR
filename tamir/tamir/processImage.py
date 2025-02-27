@@ -29,7 +29,7 @@ class ProcessDepthNode(Node):
         
         self.latest_img = None
         self.processing = False
-            
+        
         self.get_logger().info('Image processing node started')
         
     def compressed_image_callback(self, msg):
