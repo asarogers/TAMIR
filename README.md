@@ -37,7 +37,6 @@
 
 ```
 TAMIR/
-├── frontend/            # React frontend UI
 ├── tamir/               # ROS 2 package with nodes & services
 │   ├── tamir_interface/
 │   ├── nodes/
@@ -48,14 +47,6 @@ TAMIR/
 ---
 
 ## Installation
-
-### 🖥️ Frontend
-
-```bash
-cd frontend
-npm install
-npm start
-```
 
 ### 🤖 Backend (ROS 2)
 
